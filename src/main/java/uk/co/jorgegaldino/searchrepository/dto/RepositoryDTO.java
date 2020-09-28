@@ -2,9 +2,11 @@ package uk.co.jorgegaldino.searchrepository.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @ApiModel(value = "RepositoryModel", description = "Repository Model")
 public class RepositoryDTO {
 	
@@ -19,5 +21,4 @@ public class RepositoryDTO {
 	
 	@ApiModelProperty(value = "Owner Login", example = "donnemartin")
 	private String ownerLogin;
-	
 }

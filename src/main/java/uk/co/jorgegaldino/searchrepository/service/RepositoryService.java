@@ -1,15 +1,16 @@
 package uk.co.jorgegaldino.searchrepository.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import uk.co.jorgegaldino.searchrepository.bean.Item;
 import uk.co.jorgegaldino.searchrepository.bean.RepositoryGitHubBean;
 import uk.co.jorgegaldino.searchrepository.dto.RepositoryDTO;
 
@@ -54,25 +55,19 @@ public class RepositoryService {
 	}
 
 	private List<RepositoryDTO> converterToDTO(RepositoryGitHubBean bean) {
-		List<RepositoryDTO> asDto = new ArrayList<RepositoryDTO>(); 
-		
 		if (bean != null) {
-			for (Item item : bean.getItems()) {
-				RepositoryDTO repository1 = new RepositoryDTO();
-				
-				
-				repository1.setName(item.getName());
-				repository1.setProjectId(item.getId());
-				repository1.setUrl(item.getClone_url());
-				repository1.setOwnerLogin(item.getOwner().getLogin());
-				asDto.add(repository1);
-			}
+			
+			List<RepositoryDTO> asDtoTemp = bean.getItems().stream()
+			        .map(item -> new RepositoryDTO(item.getId(), item.getName(), item.getClone_url(), item.getOwner().getLogin()))
+			        .collect(Collectors.toList());
+			
+			return asDtoTemp;
 		}
 
 		
 		
 	
-		return asDto;
+		return Collections.EMPTY_LIST;
 	}
 	
 
