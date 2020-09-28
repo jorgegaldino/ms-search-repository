@@ -1,4 +1,4 @@
-# ms-search-repository
+# GITHUB Search API - Repositories
 Search Repository
 
 - Rest Service by SpringBoot
@@ -6,8 +6,9 @@ Search Repository
 - Input validation - page Number should be between 1 and 10 <BR>
 - Resolver for some input languages such as C++ and C#, github needs CPP and CSharp ... <BR>
 
+
 <BR> <BR>
-#HOW TO USE<BR>
+#HOW TO RUN<BR>
 mvn spring-boot:run
 <BR><BR><BR>
 EXAMPLES:<BR>
